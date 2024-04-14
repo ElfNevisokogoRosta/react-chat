@@ -10,8 +10,8 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
-  server:{
+  server: {
     host: "0.0.0.0",
     port: 0,
-  }
+  },
 });

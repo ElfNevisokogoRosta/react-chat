@@ -5,7 +5,7 @@ export default {
     extend: {},
     colors: {
       transparent: "transparent",
-      cursor: "currentColor",
+      current: "currentColor",
       white: {
         main: "#fafafa",
         squeeze: "#deeaf3",
