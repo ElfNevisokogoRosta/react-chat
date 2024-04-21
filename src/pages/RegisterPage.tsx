@@ -1,5 +1,9 @@
+import RegisterForm from "../components/RegisterForm.tsx";
+
 function RegisterPage() {
-  return <div>Register page</div>;
+  return <div>
+    <RegisterForm/>
+  </div>;
 }
 
 export default RegisterPage;

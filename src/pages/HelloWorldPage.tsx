@@ -15,7 +15,7 @@ function HelloWorldPage() {
               <p className="text-white-squeeze font-medium leading-loose text-xl">
                 This is my pet project. For this project i use
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://nestjs.com/"
                   target="_blank"
                 >
@@ -23,7 +23,7 @@ function HelloWorldPage() {
                 </a>
                 ,
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://react.dev/"
                   target="_blank"
                 >
@@ -31,7 +31,7 @@ function HelloWorldPage() {
                 </a>
                 with
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://www.typescriptlang.org/"
                   target="_blank"
                 >
@@ -42,7 +42,7 @@ function HelloWorldPage() {
               <p className="text-white-squeeze font-medium leading-loose text-xl">
                 Style principle was from this pages:{" "}
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://www.figma.com/community/file/1359525349041220271/bravo-sample-lines-truncation"
                   target="_blank"
                 >
@@ -50,7 +50,7 @@ function HelloWorldPage() {
                 </a>
                 ,
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://www.figma.com/file/255TOnpncKESwtz7cSRZJf/Chat-interface-for-a-Dashboard-(Community)-(Copy)?type=design&node-id=0-1&mode=design&viewport=-165%2C-66%2C0.92&t=JR9USAdyNmVCvdLU-0"
                   target="_blank"
                 >
@@ -60,7 +60,7 @@ function HelloWorldPage() {
               <p className="text-white-squeeze font-medium leading-loose text-xl">
                 Styling with
                 <a
-                  className="text-white-accent mx-1 hover:text-white-main transition "
+                  className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://tailwindcss.com/"
                   target="_blank"
                 >
@@ -68,7 +68,7 @@ function HelloWorldPage() {
                 </a>
               </p>
               <Link
-                className="md:mt-4 md:max-w-[292px] w-full md:mx-auto px-6 py-3 text-white-main bg-purple-main rounded-3xl text-center text-xl hover:bg-white-accent hover:text-blue-main transition"
+                className="md:mt-4 md:max-w-[292px] w-full md:mx-auto px-6 py-3 text-white-main bg-purple-main rounded-3xl text-center text-xl hover:bg-yellow-main hover:text-blue-main transition"
                 to={"auth/register"}
               >
                 Start chatting
@@ -89,14 +89,14 @@ function HelloWorldPage() {
           <h2 className="text-white-squeeze text-3xl font-extrabold my-4">
             Check code for this projects here:
           </h2>
-          <ul className="flex justify-center items-center flex-col gap-6 md:flex-row">
+          <ul className="flex justify-center items-center flex-col gap-6 lg:gap-[200px] md:flex-row">
             <li>
               <span className="capitalize text-white-main text-xl block font-medium">
                 frontend
               </span>
               <a
                 href="https://github.com/ElfNevisokogoRosta/react-chat"
-                className="text-white-squeeze flex gap-2 flex-col justify-center items-center"
+                className="text-yellow-main flex gap-2 flex-col justify-center items-center"
                 target="_blank"
               >
                 <span>https://github.com/ElfNevisokogoRosta/react-chat</span>
@@ -109,7 +109,7 @@ function HelloWorldPage() {
               </span>
               <a
                 href="https://github.com/ElfNevisokogoRosta/chat-nest"
-                className="text-white-squeeze flex gap-2 flex-col justify-center items-center"
+                className="text-yellow-main flex gap-2 flex-col justify-center items-center"
                 target="_blank"
               >
                 <span>https://github.com/ElfNevisokogoRosta/chat-nest</span>

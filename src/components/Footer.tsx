@@ -11,7 +11,7 @@ function Footer() {
           <ul className="flex gap-2">
             <a
               href="https://github.com/ElfNevisokogoRosta"
-              className="transition text-white-squeeze hover:text-blue-main hover:bg-purple-main py-2 px-3 md:py-3 md:px-6  rounded-3xl  border flex items-center justify-center"
+              className="transition text-white-squeeze hover:text-blue-main hover:bg-yellow-main py-3 px-6   rounded-3xl  border flex items-center justify-center"
             >
               <li className="flex gap-2 items-center">
                 <span className="text-current text-xl font-normal not-italic">
@@ -22,7 +22,7 @@ function Footer() {
             </a>
             <a
               href="https://www.linkedin.com/in/anatoliy-tymoshenko-556440229/"
-              className="text-white-squeeze hover:text-blue-main hover:bg-purple-main py-2 px-3  md:py-3 md:px-6 rounded-3xl border flex items-center justify-center"
+              className="text-white-squeeze hover:text-blue-main hover:bg-yellow-main py-3 px-6   rounded-3xl border flex items-center justify-center"
             >
               <li className="flex gap-2 items-center">
                 <span className="text-current text-xl font-normal not-italic">
