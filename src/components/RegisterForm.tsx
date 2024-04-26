@@ -1,40 +1,32 @@
+import BaseButton from '../UI/BaseButton.tsx';
+import useCreateForm from "../utils/hooks/useCreateForm.tsx";
 import {registerFormConfig} from "../utils/configs";
-import BaseForm from "../UI/BaseForm.tsx";
-import {useForm} from "react-hook-form";
-import {RegisterSchema} from "../utils/validation/RegisterSchema.ts";
-import {zodResolver} from "@hookform/resolvers/zod";
-import BaseButton from "../UI/BaseButton.tsx";
 import {RegisterFormTypes} from "../utils/types";
-import {useEffect} from "react";
+import {RegisterFields} from "../utils/constants/registerFields.ts";
+import {RegisterSchema} from "../utils/validation/RegisterSchema.ts";
+import {FC} from "react";
 
+interface RegisterFormProps {
+  registerUser: (data: RegisterFormTypes) => void
+}
 
-const RegisterForm = () => {
-  const {register, handleSubmit, formState: {errors}} = useForm<RegisterFormTypes>({
-    resolver: zodResolver(RegisterSchema)
-  })
-  const config = registerFormConfig.map(({name, ...rest}) => {
-    return {...rest, ...register(name)}
-  })
-  const onSubmit = (data: RegisterFormTypes) => {
-    console.log(errors)
-    console.log(data)
-  }
-  useEffect(() => {
-    console.log(errors)
-  }, [errors])
+const RegisterForm: FC<RegisterFormProps> = ({registerUser}) => {
+  const [formElements, handleSubmit, errors] = useCreateForm<RegisterFormTypes, RegisterFields>(registerFormConfig, RegisterSchema)
   return (
-    <div className='container'>
-      <div className='py-4 flex flex-col gap-6 w-full max-w-[440px] ml-auto'>
-        <h3 className='text-white-main text-xl font-bold'>Create account</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
-
-          <BaseForm config={config}/>
-          <div className='w-full text-center'>
-            <BaseButton>Register</BaseButton>
+    <div className="py-4 flex flex-col gap-6 w-full max-w-[440px] ml-auto">
+      <h3 className="text-white-main text-xl font-bold">Create account</h3>
+      <form onSubmit={handleSubmit(registerUser)}>
+        <div className="w-full text-center">
+          <div className='flex flex-col gap-6'>
+            {...formElements}
           </div>
-
-        </form>
-      </div>
+          {errors && <div className='text-sm text-red-main text-left my-2'>
+            {errors.confirm?.message}
+          </div>
+          }
+          <BaseButton>Register</BaseButton>
+        </div>
+      </form>
     </div>
   );
 };

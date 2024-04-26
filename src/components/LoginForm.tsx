@@ -1,39 +1,38 @@
-import {useForm} from "react-hook-form";
-import {LoginFormTypes} from "../utils/types";
-import {zodResolver} from "@hookform/resolvers/zod";
+import {LoginFormTypes} from '../utils/types';
+import BaseButton from '../UI/BaseButton.tsx';
+import useCreateForm from '../utils/hooks/useCreateForm.tsx';
+import {loginFormConfig} from '../utils/configs';
+import {LoginFields} from "../utils/constants/loginFields.ts";
 import {LoginSchema} from "../utils/validation/LoginSchema.ts";
-import BaseForm from "../UI/BaseForm.tsx";
-import {loginFormConfig} from "../utils/configs/LoginFormConfig.ts";
-import BaseButton from "../UI/BaseButton.tsx";
-import {useEffect} from "react";
+
 
 const LoginForm = () => {
-  const {register, handleSubmit, formState: {errors}} = useForm<LoginFormTypes>({resolver: zodResolver(LoginSchema)})
-  const config = loginFormConfig.map(({name, ...rest}) => {
-    return {...rest, ...register(name)}
-  })
+  const [formElements, handleSubmit] = useCreateForm<LoginFormTypes, LoginFields>(
+    loginFormConfig,
+    LoginSchema,
+  );
   const onSubmit = (data: LoginFormTypes) => {
-    console.log(data)
-  }
-  useEffect(() => {
-    console.log(errors)
-  }, [errors])
+    console.log(data);
+  };
+
   return (
-    <div className='container'>
-      <div className='py-4 flex flex-col gap-6 w-full max-w-[440px] ml-auto'>
-        <h3 className='text-white-main text-xl font-bold'>Login in your account</h3>
+    <>
+      <div className="py-4 flex flex-col gap-6 w-full max-w-[440px] ml-auto">
+        <h3 className="text-white-main text-xl font-bold">
+          Login in your account
+        </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <BaseForm config={config}/>
-          <div className='w-full text-center'>
-            <BaseButton>Login</BaseButton>
+          <div className='flex flex-col gap-6'>
+            {...formElements}
           </div>
 
+          <div className="w-full text-center">
+            <BaseButton>Login</BaseButton>
+          </div>
         </form>
       </div>
-
-    </div>
+    </>
   );
+};
 
-}
-
-export default LoginForm
+export default LoginForm;

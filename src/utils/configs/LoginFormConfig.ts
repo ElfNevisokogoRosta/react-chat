@@ -1,17 +1,20 @@
-import {LoginFormConfigTypes} from "../types";
-import CONSTANTS from "../constants";
+import {FormConfigTypes} from '../types';
+import {LoginFields} from '../constants/loginFields.ts';
 
-const loginFormConfig: LoginFormConfigTypes[] = [
+const loginFormConfig: FormConfigTypes<LoginFields>[] = [
   {
-    name: CONSTANTS.LOGIN_FIELDS[0],
-    type: 'email',
-    placeholder: 'example@example.com',
-    key: 'email'
-  }, {
-    name: CONSTANTS.LOGIN_FIELDS[1],
+    tag: 'input',
+    name: 'email',
+    placeholder: 'Email',
+    label: 'Email',
+    type: 'text'
+  },
+  {
+    tag: 'input',
+    name: 'password',
     type: 'password',
-    placeholder: "Password",
-    key: 'password'
-  }
-]
-export {loginFormConfig}
+    placeholder: 'Password',
+    label: 'Password',
+  },
+];
+export default loginFormConfig;

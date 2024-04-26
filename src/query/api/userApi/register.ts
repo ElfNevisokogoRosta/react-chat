@@ -1,11 +1,14 @@
-import {axiosRequest} from "../apiAxios.ts";
-import {RegisterFormTypes} from "../../../utils/types";
+import {axiosRequest} from '../apiAxios.ts';
+import {UserRegisterTypes} from '../../../utils/types';
 
-const registerUser = async (data: RegisterFormTypes) => {
-  return await axiosRequest.post('users/register', {data}).then((res) => {
-    res.data
-  }).catch((err) => {
-    err.message
-  })
-}
-export default registerUser
+const registerUser = async (data: UserRegisterTypes) => {
+  return await axiosRequest
+    .post('/user', {...data})
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err.message;
+    });
+};
+export default registerUser;

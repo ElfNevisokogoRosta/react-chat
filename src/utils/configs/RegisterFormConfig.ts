@@ -1,28 +1,34 @@
-import {RegisterFormConfigTypes} from "../types";
-import CONSTANTS from "../constants";
+import {FormConfigTypes} from '../types';
+import {RegisterFields} from '../constants/registerFields.ts';
 
-
-const registerFormConfig: RegisterFormConfigTypes[] = [
+const registerFormConfig: FormConfigTypes<RegisterFields>[] = [
   {
-    name: CONSTANTS.REGISTER_FIELDS[0],
-    type: 'text',
-    placeholder: 'Username',
-    key: 'name',
-  }, {
-    name: CONSTANTS.REGISTER_FIELDS[1],
-    type: 'email',
-    placeholder: 'Email',
-    key: 'email'
-  }, {
-    name: CONSTANTS.REGISTER_FIELDS[2],
-    type: 'password',
-    placeholder: 'Password',
-    key: 'password'
-  }, {
-    name: CONSTANTS.REGISTER_FIELDS[3],
-    type: 'password',
-    placeholder: 'Confirm Password',
-    key: 'confirmPassword'
-  }
-]
-export {registerFormConfig}
+    tag: 'input',
+    name: 'username',
+    placeholder: 'Enter username',
+    label: 'Username',
+    type: 'text'
+  },
+  {
+    tag: 'input',
+    name: 'email',
+    placeholder: 'Enter email',
+    label: 'Email',
+    type: 'text'
+  },
+  {
+    tag: 'input',
+    name: 'password',
+    placeholder: 'Enter password',
+    label: 'Password',
+    type: 'password'
+  },
+  {
+    tag: 'input',
+    name: 'confirmPassword',
+    placeholder: 'Enter confirm password',
+    label: 'Confirm password',
+    type: 'password'
+  },
+];
+export default registerFormConfig;

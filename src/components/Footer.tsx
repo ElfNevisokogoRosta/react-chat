@@ -1,5 +1,5 @@
-import { FaGithubAlt } from "react-icons/fa";
-import { BsLinkedin } from "react-icons/bs";
+import { FaGithubAlt } from 'react-icons/fa';
+import { BsLinkedin } from 'react-icons/bs';
 function Footer() {
   return (
     <footer className="py-4">
@@ -17,7 +17,7 @@ function Footer() {
                 <span className="text-current text-xl font-normal not-italic">
                   GitHub
                 </span>
-                <FaGithubAlt className="text-current w-9 h-9 md:w-12 md:h-9" />{" "}
+                <FaGithubAlt className="text-current w-9 h-9 md:w-12 md:h-9" />{' '}
               </li>
             </a>
             <a
@@ -34,7 +34,7 @@ function Footer() {
           </ul>
         </address>
         <p className="text-white-accent text-center select-none ">
-          Copyright 2024 ©{" "}
+          Copyright 2024 ©{' '}
         </p>
       </div>
     </footer>

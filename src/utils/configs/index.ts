@@ -1,3 +1,4 @@
-import {registerFormConfig} from "./RegisterFormConfig.ts";
+import registerFormConfig from './RegisterFormConfig.ts';
+import loginFormConfig from './LoginFormConfig.ts';
 
-export {registerFormConfig};
+export { registerFormConfig, loginFormConfig };

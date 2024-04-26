@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { SiNestjs } from "react-icons/si";
-import { RiReactjsFill } from "react-icons/ri";
+import { Link } from 'react-router-dom';
+import { SiNestjs } from 'react-icons/si';
+import { RiReactjsFill } from 'react-icons/ri';
 
 function HelloWorldPage() {
   return (
@@ -40,7 +40,7 @@ function HelloWorldPage() {
                 .
               </p>
               <p className="text-white-squeeze font-medium leading-loose text-xl">
-                Style principle was from this pages:{" "}
+                Style principle was from this pages:{' '}
                 <a
                   className="text-yellow-main mx-1 hover:text-white-main transition "
                   href="https://www.figma.com/community/file/1359525349041220271/bravo-sample-lines-truncation"
@@ -69,7 +69,7 @@ function HelloWorldPage() {
               </p>
               <Link
                 className="md:mt-4 md:max-w-[292px] w-full md:mx-auto px-6 py-3 text-white-main bg-purple-main rounded-3xl text-center text-xl hover:bg-yellow-main hover:text-blue-main transition"
-                to={"auth/register"}
+                to={'auth/register'}
               >
                 Start chatting
               </Link>

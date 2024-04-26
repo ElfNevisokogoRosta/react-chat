@@ -1,8 +1,6 @@
-interface RegisterFormTypes {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { RegisterFields } from '../constants/registerFields.ts';
 
+type RegisterFormTypes = {
+  [key in RegisterFields]: string;
+};
 export default RegisterFormTypes;
