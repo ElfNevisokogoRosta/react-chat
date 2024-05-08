@@ -1,5 +1,5 @@
 import axios from 'axios';
-import refresh from "./userApi/refresh.ts";
+import refresh from './userApi/refresh.ts';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,7 +15,6 @@ axiosRequest.interceptors.request.use(
       config.headers.Authorization = `Bearer ${refreshToken}`;
     }
     if (token) {
-      console.log('token added');
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -31,17 +30,14 @@ axiosRequest.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    console.log(error.config, 'axios inter')
     if (
       error.response.status === 401 &&
       !originalRequest.url.includes('auth/refresh')
     ) {
-
       await refresh();
       return;
     }
     if (error.response.status === 401 && !originalRequest._retry) {
-
       originalRequest._retry = true;
       try {
         return axiosRequest(originalRequest);

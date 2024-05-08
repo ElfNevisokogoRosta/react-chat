@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter} from 'react-router-dom';
 import AuthLayout from '../layouts/AuthLayout.tsx';
 import RegisterPage from '../pages/RegisterPage.tsx';
 import LoginPage from '../pages/LoginPage.tsx';
@@ -10,27 +10,28 @@ import ChatPage from '../pages/ChatPage.tsx';
 import RequireAuth from '../utils/hooks/RequireAuth.tsx';
 import MainLayout from '../layouts/MainLayout.tsx';
 import HelloWorldPage from '../pages/HelloWorldPage.tsx';
+import HomePage from "../pages/HomePage.tsx";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: <MainLayout/>,
     children: [
       {
         index: true,
-        element: <HelloWorldPage />,
+        element: <HelloWorldPage/>,
       },
       {
         path: 'auth',
-        element: <AuthLayout />,
+        element: <AuthLayout/>,
         children: [
           {
             path: 'register',
-            element: <RegisterPage />,
+            element: <RegisterPage/>,
           },
           {
             path: 'login',
-            element: <LoginPage />,
+            element: <LoginPage/>,
           },
         ],
       },
@@ -38,21 +39,27 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: (
           <RequireAuth>
-            <DashboardLayout />
+            <DashboardLayout/>
           </RequireAuth>
         ),
+        children: [
+          {
+            index: true,
+            element: <HomePage/>
+          }
+        ],
       },
       {
         path: 'users',
         element: (
           <RequireAuth>
-            <UserLayout />
+            <UserLayout/>
           </RequireAuth>
         ),
         children: [
           {
             path: ':userId',
-            element: <UserPage />,
+            element: <UserPage/>,
           },
         ],
       },
@@ -60,13 +67,13 @@ const router = createBrowserRouter([
         path: 'chats',
         element: (
           <RequireAuth>
-            <ChatLayout />
+            <ChatLayout/>
           </RequireAuth>
         ),
         children: [
           {
             path: ':chatId',
-            element: <ChatPage />,
+            element: <ChatPage/>,
           },
         ],
       },

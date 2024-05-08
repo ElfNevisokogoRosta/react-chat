@@ -1,6 +1,6 @@
-import {forwardRef, InputHTMLAttributes} from 'react';
-import {cva, VariantProps} from 'class-variance-authority';
-import {cn} from '../utils/cn.ts';
+import { forwardRef, InputHTMLAttributes } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
+import { cn } from '../utils/cn.ts';
 
 const inputVariants = cva(
   'text-base outline-none border-2 border-transparent ',
@@ -23,18 +23,20 @@ const inputVariants = cva(
 
 type BaseInputProps = InputHTMLAttributes<HTMLInputElement> &
   VariantProps<typeof inputVariants> & {
-  error?: any;
-  label?: string;
-};
+    error?: any;
+    label?: string;
+  };
 
 const BaseInput = forwardRef<HTMLInputElement, BaseInputProps>(
-  ({className, label, error, variant, size, ...rest}, ref) => {
+  ({ className, label, error, variant, size, ...rest }, ref) => {
     return (
       <label className="flex flex-col gap-1">
-        {label && <span className='text-base text-white-main text-left'>{label}</span>}
+        {label && (
+          <span className="text-base text-white-main text-left">{label}</span>
+        )}
         <input
           ref={ref}
-          className={cn(inputVariants({variant, size, className}))}
+          className={cn(inputVariants({ variant, size, className }))}
           {...rest}
         />
         {error && (

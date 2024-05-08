@@ -1,9 +1,9 @@
-import {axiosRequest} from '../apiAxios.ts';
-import {UserRegisterTypes} from '../../../utils/types';
+import { axiosRequest } from '../apiAxios.ts';
+import { UserRegisterTypes } from '../../../utils/types';
 
 const registerUser = async (data: UserRegisterTypes) => {
   return await axiosRequest
-    .post('/user', {...data})
+    .post('/user', { ...data })
     .then((res) => {
       return res.data;
     })

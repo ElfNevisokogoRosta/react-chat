@@ -1,12 +1,16 @@
-import {UseMutateFunction, useMutation, UseMutationResult} from "@tanstack/react-query";
-import registerUser from "../api/userApi/register.ts";
-import {UserRegisterTypes} from "../../utils/types";
+import {
+  UseMutateFunction,
+  useMutation,
+  UseMutationResult,
+} from '@tanstack/react-query';
+import registerUser from '../api/userApi/register.ts';
+import { UserRegisterTypes } from '../../utils/types';
 
 type UseRegisterMutationReturnType = [
   UseMutateFunction<void, Error, UserRegisterTypes, unknown>,
   boolean,
   boolean,
-  boolean
+  boolean,
 ];
 
 const useRegisterMutation = (): UseRegisterMutationReturnType => {
@@ -15,11 +19,16 @@ const useRegisterMutation = (): UseRegisterMutationReturnType => {
     isPending,
     isError,
     isSuccess,
-  }: UseMutationResult<void, Error, UserRegisterTypes, unknown> = useMutation<void, Error, UserRegisterTypes, unknown>({
+  }: UseMutationResult<void, Error, UserRegisterTypes, unknown> = useMutation<
+    void,
+    Error,
+    UserRegisterTypes,
+    unknown
+  >({
     mutationFn: (data: UserRegisterTypes) => {
-      return registerUser(data)
+      return registerUser(data);
     },
-    mutationKey: ['user']
+    mutationKey: ['user'],
   });
 
   return [mutate, isPending, isError, isSuccess];

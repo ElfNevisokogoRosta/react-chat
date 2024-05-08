@@ -1,5 +1,5 @@
-import {FormConfigTypes} from '../types';
-import {LoginFields} from '../constants/loginFields.ts';
+import { FormConfigTypes } from '../types';
+import { LoginFields } from '../constants/loginFields.ts';
 
 const loginFormConfig: FormConfigTypes<LoginFields>[] = [
   {
@@ -7,7 +7,7 @@ const loginFormConfig: FormConfigTypes<LoginFields>[] = [
     name: 'email',
     placeholder: 'Email',
     label: 'Email',
-    type: 'text'
+    type: 'text',
   },
   {
     tag: 'input',

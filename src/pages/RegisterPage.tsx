@@ -1,22 +1,23 @@
 import RegisterForm from '../components/RegisterForm.tsx';
-import {RegisterFormTypes} from "../utils/types";
-import useRegisterMutation from "../query/mutations/useRegister.mutation.ts";
-import {MutatingDots} from "react-loader-spinner";
-import {useNavigate} from "react-router-dom";
+import { RegisterFormTypes } from '../utils/types';
+import useRegisterMutation from '../query/mutations/useRegister.mutation.ts';
+import { MutatingDots } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
-  const [mutate, isPending, isError, isSuccess] = useRegisterMutation()
-  const navigate = useNavigate()
+  const [mutate, isPending, isError, isSuccess] = useRegisterMutation();
+  const navigate = useNavigate();
   const registerUser = (data: RegisterFormTypes) => {
-    const {email, password, username} = data
-    const userData = {email, password, username}
-    mutate(userData)
-    if (isSuccess) return navigate('/dashboard')
-  }
+    const { email, password, username } = data;
+    const userData = { email, password, username };
+    mutate(userData);
+    if (isSuccess) return navigate('/dashboard');
+  };
   return (
     <div>
-      <RegisterForm registerUser={registerUser}/>
-      {isPending && <MutatingDots
+      <RegisterForm registerUser={registerUser} />
+      {isPending && (
+        <MutatingDots
           visible={true}
           height="100"
           width="100"
@@ -26,7 +27,8 @@ function RegisterPage() {
           ariaLabel="mutating-dots-loading"
           wrapperStyle={{}}
           wrapperClass="text-center"
-      />}
+        />
+      )}
       {isError && <span>Server error</span>}
     </div>
   );

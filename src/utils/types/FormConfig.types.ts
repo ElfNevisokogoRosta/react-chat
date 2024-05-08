@@ -1,4 +1,4 @@
-import {FormElements} from '../constants/formElements.ts';
+import { FormElements } from '../constants/formElements.ts';
 
 interface FormConfigTypes<T> {
   tag: FormElements;

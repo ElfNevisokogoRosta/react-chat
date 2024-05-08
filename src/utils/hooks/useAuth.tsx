@@ -1,8 +1,22 @@
 import { useState } from 'react';
 
-export const useAuth = () => {
-  const [token, setToken] = useState<string>('');
-  const isToken = localStorage.getItem('access_token');
-  if (isToken !== null) setToken(isToken);
-  return [token];
+interface UseAuth {
+  isAuth: boolean;
+  login: (data: string) => void;
+  logOut: () => void;
+}
+
+const useAuth = (): UseAuth => {
+  const [isAuth, setIsAuth] = useState<boolean>(true);
+
+  const login = (data: string) => {
+    console.log(data, 'from hook');
+    setIsAuth(true);
+  };
+
+  const logOut = () => {
+    setIsAuth(false);
+  };
+  return { isAuth, login, logOut };
 };
+export { useAuth };

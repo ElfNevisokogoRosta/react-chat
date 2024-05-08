@@ -26,7 +26,6 @@ export const BaseLink: FC<BaseLinkProps> = ({
   variant,
   ...rest
 }) => {
-  console.log(variant);
   return (
     <Link
       className={cn(linkVariants({ size, variant, className }))}
