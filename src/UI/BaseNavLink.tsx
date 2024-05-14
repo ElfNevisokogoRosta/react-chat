@@ -1,15 +1,37 @@
-import {NavigateProps, NavLink} from "react-router-dom";
-import {FC, ReactNode} from "react";
+import { NavigateProps, NavLink } from 'react-router-dom';
+import { FC, ReactNode } from 'react';
 
 type BaseNavLinkProps = NavigateProps & {
-  label: string,
-  icon: ReactNode
-}
+  label: string;
+  icon: ReactNode;
+};
 
-const BaseNavLink: FC<BaseNavLinkProps> = ({label, icon, ...rest}) => {
+// const navElementVariant = cva('', {
+//   variants: {
+//     variant: {
+//       default: '',
+//       active: '',
+//     },
+//   },
+//   defaultVariants: {
+//     variant: 'default',
+//   },
+// });
+
+const BaseNavLink: FC<BaseNavLinkProps> = ({ label, icon, to, ...rest }) => {
+  // const location = useLocation();
+  // const isActive = location.pathname.includes(to as string);
   return (
-    <NavLink className='py-3 px-4 flex w-full justify-between items-center' {...rest}><span
-      className='w-12 h-12 flex items-center justify-center bg-white-squeeze rounded-3xl'>{icon}</span>{label}</NavLink>
+    <NavLink
+      className="w-full flex items-center gap-3 border rounded-xl hover:bg-blue-main hover:text-white-squeeze hover:border-yellow-main transition"
+      {...rest}
+      to={to}
+    >
+      <span className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+        {icon}
+      </span>
+      <span>{label}</span>
+    </NavLink>
   );
 };
 

@@ -15,6 +15,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ registerUser }) => {
     RegisterFormTypes,
     RegisterFields
   >(registerFormConfig, RegisterSchema);
+
   return (
     <div className="py-4 flex flex-col gap-6 w-full max-w-[440px] ml-auto">
       <h3 className="text-white-main text-xl font-bold">Create account</h3>

@@ -1,13 +1,9 @@
-import NavBar from "../components/Home/NavBar.tsx";
-import ChatList from "../components/Chat/ChatList.tsx";
-
 const HomePage = () => {
-  return <div className='container'>
-    <div className='grid grid-cols-12 gap-6 bg-white-squeeze rounded-3xl p-6 my-8'>
-      <div className='col-span-2'><NavBar/></div>
-      <div className='col-span-2'><ChatList/></div>
+  return (
+    <div className="absolute top-[95px] left-[324px] flex flex-col gap-6 px-6 pt-6 max-w-[calc(100%-324px)] w-full h-[calc(100%-168px)] shrink-0">
+      select some chat
     </div>
-  </div>;
+  );
 };
 
 export default HomePage;
