@@ -1,41 +1,111 @@
 import ChatElement from './ChatElement.tsx';
-import { useNavigate } from 'react-router-dom';
-
-const chatList = [
-  {
-    id: 4,
-    name: 'Chat2',
-    icon: 'img',
-  },
-  {
-    id: 5,
-    name: 'Chat2',
-    icon: 'img',
-  },
-  {
-    id: 6,
-    name: 'Chat2',
-    icon: 'img',
-  },
-];
+import { useAuth } from '../../context/AuthContext.tsx';
+import BaseButton from '../../UI/BaseButton.tsx';
+import { useModal } from '../../context/ModalContext.tsx';
+import NewChat from '../NewChat/NewChat.tsx';
+import { CiSearch } from 'react-icons/ci';
+import { AnimatePresence, motion } from 'framer-motion';
+import BaseInput from '../../UI/BaseInput.tsx';
+import { ChangeEvent, useEffect, useState } from 'react';
+import ChatDataTypes from '../../utils/types/ChatData.types.ts';
+import { RxCross1 } from 'react-icons/rx';
 
 const ChatList = () => {
-  const navigate = useNavigate();
+  const { openModal } = useModal();
+  const { isUser } = useAuth();
+  const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
+  const [chats, setChats] = useState<ChatDataTypes[]>([]);
+  const [filteredChats, setFilteredChats] = useState<ChatDataTypes[]>([]);
+
+  useEffect(() => {
+    if (isUser) {
+      setChats(isUser.participant_chat);
+      setFilteredChats(isUser.participant_chat);
+    }
+  }, [isUser]);
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value.trim();
+
+    if (query === '') {
+      setFilteredChats(chats);
+    } else {
+      setFilteredChats(
+        chats.filter((chat) =>
+          chat.chat_name.some((name) =>
+            name.toLowerCase().includes(query.toLowerCase()),
+          ),
+        ),
+      );
+    }
+  };
+
+  const openNewChatModal = () => {
+    openModal(<NewChat />);
+  };
+
+  const onSearchOpenHandler = () => {
+    setIsSearchActive((state) => !state);
+  };
+
   return (
-    <div className="absolute top-[95px] left-[75px] max-w-fit w-full border-blue-main h-full py-6 px-5 border-r-2">
-      <h2 className="my-4 max-w-fit w-full">Messaging</h2>
-      <div className="h-[85%] overflow-y-scroll scrollbar">
-        <ul className="flex flex-col max-w-fit w-full divide-y divide-gray-main gap-1">
-          {chatList.map((chat) => (
-            <li
-              onClick={() => navigate(`${chat.id}`)}
-              className="flex items-center gap-x-2 px-4 pt-2 hover:bg-yellow-main transition cursor-pointer w-[200px]"
-              key={chat.id}
-            >
-              <ChatElement chatElement={chat} />
-            </li>
-          ))}
+    <div className="flex flex-col">
+      <div className="flex items-center justify-between relative py-3">
+        <h2 className="text-2xl font-bold text-white-main my-2 text z-0">
+          Messaging
+        </h2>
+        <motion.div
+          initial={{ width: 0, opacity: 0 }}
+          animate={{
+            width: isSearchActive ? 300 : 0,
+            opacity: isSearchActive ? 1 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-1/2 right-12 z-10 -translate-y-1/2 overflow-hidden pl-3.5"
+        >
+          <BaseInput
+            onChange={onChangeHandler}
+            name="search_q"
+            className=" bg-blue-main w-full"
+            placeholder="Enter chat name"
+          />
+        </motion.div>
+        <button onClick={onSearchOpenHandler} className="text-white-main">
+          <AnimatePresence mode="wait" initial={false}>
+            {isSearchActive ? (
+              <motion.div
+                key="cross"
+                initial={{ opacity: 0, rotate: 90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: -90 }}
+                transition={{ duration: 0.2 }}
+              >
+                <RxCross1 className="w-8 h-8" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="search"
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.2 }}
+              >
+                <CiSearch className="w-8 h-8" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
+      </div>
+      <div className="overflow-y-scroll h-full">
+        <ul className="flex flex-col gap-4">
+          {filteredChats &&
+            filteredChats.map((chat) => (
+              <ChatElement key={chat.id} chatElement={chat} />
+            ))}
         </ul>
+        <BaseButton className="text-white-main" onClick={openNewChatModal}>
+          New chat
+        </BaseButton>
       </div>
     </div>
   );

@@ -1,18 +1,24 @@
 import RegisterForm from '../components/RegisterForm.tsx';
 import { RegisterFormTypes } from '../utils/types';
-import useRegisterMutation from '../query/mutations/useRegister.mutation.ts';
 import { MutatingDots } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.tsx';
+import useRegisterUser from '../query/api/mutations/register.ts';
+import { useEffect } from 'react';
 
 function RegisterPage() {
-  const [mutate, isPending, isError, isSuccess] = useRegisterMutation();
-  const navigate = useNavigate();
-  const registerUser = (data: RegisterFormTypes) => {
-    const { email, password, username } = data;
+  const { login } = useAuth();
+  const { mutate, data, isSuccess, failureReason, isPending } =
+    useRegisterUser();
+  const registerUser = (formData: RegisterFormTypes) => {
+    const { email, password, username } = formData;
     const userData = { email, password, username };
     mutate(userData);
-    if (isSuccess) return navigate('/dashboard');
   };
+  useEffect(() => {
+    if (isSuccess && data) {
+      login(data.access_token, data.refresh_token);
+    }
+  }, [login, data, isSuccess]);
   return (
     <div>
       <RegisterForm registerUser={registerUser} />
@@ -29,7 +35,7 @@ function RegisterPage() {
           wrapperClass="text-center"
         />
       )}
-      {isError && <span>Server error</span>}
+      {failureReason && <span>{failureReason.message}</span>}
     </div>
   );
 }

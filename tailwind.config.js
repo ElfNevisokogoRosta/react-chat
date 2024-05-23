@@ -1,9 +1,9 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
+        // Ваші поточні кольори
         transparent: 'transparent',
         current: 'currentColor',
         white: {
@@ -33,6 +33,22 @@ export default {
         },
         purple: {
           main: '#5c5c68',
+        },
+        // Додані кольори
+        green: {
+          main: '#459c65',
+          secondary: '#175e34',
+          accent: '#78a894',
+        },
+        orange: {
+          main: '#ff9933',
+          secondary: '#cc6600',
+          accent: '#ffcc80',
+        },
+        pink: {
+          main: '#ff6699',
+          secondary: '#cc3366',
+          accent: '#ff99cc',
         },
       },
     },

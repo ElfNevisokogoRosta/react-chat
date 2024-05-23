@@ -10,15 +10,26 @@ import MainLayout from '../layouts/MainLayout.tsx';
 import HelloWorldPage from '../pages/HelloWorldPage.tsx';
 import HomePage from '../pages/HomePage.tsx';
 import ChatRoom from '../components/Chat/ChatRoom.tsx';
+import AuthProvider from '../context/AuthContext.tsx';
+import ModalProvider from '../context/ModalContext.tsx';
+import { WebSocketProvider } from '../context/WebSocketContext.tsx';
+import { socket } from '../utils/socket.ts';
+import FriendsPage from '../pages/FriendsPage.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <AuthProvider>
+        <ModalProvider>
+          <MainLayout />
+        </ModalProvider>
+      </AuthProvider>
+    ),
     children: [
       {
         path: '',
-        element: <HelloWorldPage />, // This could be your main landing page
+        element: <HelloWorldPage />,
       },
       {
         path: 'auth',
@@ -48,10 +59,16 @@ const router = createBrowserRouter([
           },
           {
             path: ':chatId',
-            element: <ChatRoom />,
+
+            element: (
+              <WebSocketProvider value={socket}>
+                <ChatRoom />
+              </WebSocketProvider>
+            ),
           },
         ],
       },
+
       {
         path: 'users',
         element: (
@@ -65,6 +82,14 @@ const router = createBrowserRouter([
             element: <UserPage />,
           },
         ],
+      },
+      {
+        path: 'friends',
+        element: (
+          <RequireAuth>
+            <FriendsPage />
+          </RequireAuth>
+        ),
       },
     ],
   },

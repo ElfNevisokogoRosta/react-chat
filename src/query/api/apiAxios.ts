@@ -9,8 +9,11 @@ export const axiosRequest = axios.create({
 
 axiosRequest.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refreshToken');
+    const token = localStorage.getItem('token')?.trim().replace(/['"]+/g, '');
+    const refreshToken = localStorage
+      .getItem('refreshToken')
+      ?.trim()
+      .replace(/['"]+/g, '');
     if (token && config.url && config?.url.includes('auth/refresh')) {
       config.headers.Authorization = `Bearer ${refreshToken}`;
     }

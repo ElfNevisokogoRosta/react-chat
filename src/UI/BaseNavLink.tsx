@@ -23,7 +23,7 @@ const BaseNavLink: FC<BaseNavLinkProps> = ({ label, icon, to, ...rest }) => {
   // const isActive = location.pathname.includes(to as string);
   return (
     <NavLink
-      className="w-full flex items-center gap-3 border rounded-xl hover:bg-blue-main hover:text-white-squeeze hover:border-yellow-main transition"
+      className="w-full bg-white-main flex items-center gap-3 border rounded-xl hover:bg-blue-main hover:text-white-squeeze hover:border-yellow-main transition"
       {...rest}
       to={to}
     >

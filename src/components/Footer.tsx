@@ -1,8 +1,9 @@
 import { FaGithubAlt } from 'react-icons/fa';
 import { BsLinkedin } from 'react-icons/bs';
+
 function Footer() {
   return (
-    <footer className="py-4">
+    <footer className="py-4 mt-auto">
       <div className="container">
         <h3 className="text-2xl text-white-squeeze pl-9 font-extrabold my-9">
           Contact me:

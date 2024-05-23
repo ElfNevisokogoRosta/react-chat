@@ -1,45 +1,73 @@
-import { useForm } from 'react-hook-form';
 import BaseInput from '../UI/BaseInput.tsx';
 import BaseButton from '../UI/BaseButton.tsx';
-
-interface UserProperties {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  username: string;
-}
+import { useAuth } from '../context/AuthContext.tsx';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { UpdateUserDTO } from '../utils/types';
+import useUpdateUserMutation from '../query/api/mutations/updateUser.mutation.ts';
+import BackTo from '../components/BackTo/BackTo.tsx';
 
 function UserPage() {
-  const { register } = useForm<UserProperties>();
-  const userData = {
-    email: 'kolya@pes.duk',
-    username: 'kolya@pes.duk',
-    first_name: null,
-    last_name: null,
+  const [userFormData, setUserFormData] = useState<UpdateUserDTO>({
+    first_name: '',
+    last_name: '',
+    username: '',
+  });
+  const { isUser } = useAuth();
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    console.log({ field, value });
+    setUserFormData((state) => ({ ...state, [field]: value }));
   };
-  const { email, username, first_name, last_name } = userData;
+
+  useEffect(() => {
+    setUserFormData({
+      first_name: isUser?.first_name || '',
+      last_name: isUser?.last_name || '',
+      username: isUser?.username || '',
+    });
+  }, []);
+
+  const { mutate } = useUpdateUserMutation();
+
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(userFormData);
+  };
   return (
-    <div className="container my-[100px]">
-      <form className="max-w-[630px] w-full mx-auto flex flex-col gap-6">
+    <div className="container relative">
+      <h2 className="my-6 text-white-main text-2xl font-extrabold">
+        This all data about
+        <span className="ml-2 text-orange-accent">{isUser?.username}</span>
+      </h2>
+      <p className="my-4 text-xl text-white-main font-bold">{isUser?.email}</p>
+
+      <form
+        onSubmit={onSubmitHandler}
+        className="max-w-[630px] w-full mx-auto flex flex-col gap-6"
+      >
+        {/*<BaseInput*/}
+        {/*  label="Username"*/}
+        {/*  name="username"*/}
+        {/*  value={userFormData.username}*/}
+        {/*  onChange={onChangeHandler}*/}
+        {/*/>*/}
         <BaseInput
-          label="Username"
-          value={username || ''}
-          {...register('username')}
+          label="First name"
+          name="first_name"
+          value={userFormData.first_name}
+          onChange={onChangeHandler}
         />
-        <BaseInput value={email || ''} label="Email" {...register('email')} />
         <BaseInput
-          value={first_name || ''}
-          label="First Name"
-          {...register('first_name')}
-        />
-        <BaseInput
-          value={last_name || ''}
-          label="Last Name"
-          {...register('last_name')}
+          label="Last name"
+          name="last_name"
+          value={userFormData.last_name}
+          onChange={onChangeHandler}
         />
         <BaseButton className="text-white-main">Update data</BaseButton>
       </form>
+      <BackTo />
     </div>
   );
 }

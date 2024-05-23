@@ -1,8 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SiNestjs } from 'react-icons/si';
 import { RiReactjsFill } from 'react-icons/ri';
+import useLocalStorage from '../utils/hooks/useLocalStorage.tsx';
+import { useEffect } from 'react';
 
 function HelloWorldPage() {
+  const { setItem, getItem } = useLocalStorage();
+  const isVisited = getItem('isVisited');
+  const navigate = useNavigate();
+  useEffect(() => {
+    setItem('isVisited', true);
+    if (isVisited) {
+      navigate('/auth/login');
+    }
+  });
   return (
     <main>
       <section className="mb-12">

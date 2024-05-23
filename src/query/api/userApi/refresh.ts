@@ -2,7 +2,7 @@ import { axiosRequest } from '../apiAxios.ts';
 
 const refreshToken = async () => {
   return await axiosRequest
-    .get('auth/refresh_token')
+    .get('auth/refresh')
     .then((res) => res.data)
     .catch((err) => err.message);
 };
