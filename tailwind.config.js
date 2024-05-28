@@ -34,7 +34,6 @@ export default {
         purple: {
           main: '#5c5c68',
         },
-        // Додані кольори
         green: {
           main: '#459c65',
           secondary: '#175e34',

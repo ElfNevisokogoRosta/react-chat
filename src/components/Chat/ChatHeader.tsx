@@ -25,7 +25,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ chat }) => {
   };
 
   return (
-    <div className="flex gap-2 sticky top-[116px] bg-blue-main py-2">
+    <div className="flex gap-2 bg-blue-main py-2">
       <span className="block w-12 h-12 bg-yellow-main rounded-full flex-shrink-0"></span>
       <div className="flex justify-between gap-1 w-full items-center">
         {chat && isUser && (

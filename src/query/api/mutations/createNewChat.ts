@@ -1,6 +1,5 @@
 import { axiosRequest } from '../apiAxios.ts';
 import { useMutation } from '@tanstack/react-query';
-import { StorageValue } from '../../../utils/hooks/useLocalStorage.tsx';
 
 interface CreateNewChatData {
   chat_name?: string;
@@ -8,17 +7,9 @@ interface CreateNewChatData {
   created_at: string;
 }
 
-const createNewChat = async ({
-  data,
-  token,
-}: {
-  data: CreateNewChatData;
-  token: StorageValue;
-}) => {
+const createNewChat = async (data: CreateNewChatData) => {
   return await axiosRequest
-    .post('/chat', data, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    .post('/chat', data)
     .then((res) => res.data)
     .catch((e) => {
       throw e;
