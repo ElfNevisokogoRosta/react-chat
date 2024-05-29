@@ -10,7 +10,7 @@ const FriendsPage = () => {
   const { openModal } = useModal();
   console.log(isUser?.friends);
   return (
-    <div className="container">
+    <div className="container flex flex-col gap-2 min-h-[65dvh]">
       <h2 className="my-4 text-white-main text-3xl font-extrabold">
         Friend list
       </h2>
@@ -18,10 +18,15 @@ const FriendsPage = () => {
         {isUser &&
           isUser.friends.map((friend) => <FriendListElement friend={friend} />)}
       </div>
-      <BaseButton onClick={() => openModal(<AddFriendModal />)}>
-        Add friends
-      </BaseButton>
-      <BackTo />
+      <div className="mt-auto">
+        <BaseButton
+          className="text-white-main"
+          onClick={() => openModal(<AddFriendModal />)}
+        >
+          Add friends
+        </BaseButton>
+        <BackTo />
+      </div>
     </div>
   );
 };

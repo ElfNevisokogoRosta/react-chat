@@ -1,7 +1,7 @@
 import BaseNavLink from '../../UI/BaseNavLink.tsx';
 import { FaUser, FaUserFriends } from 'react-icons/fa';
-import { IoSettings } from 'react-icons/io5';
-import { RiArchiveDrawerFill } from 'react-icons/ri';
+// import { IoSettings } from 'react-icons/io5';
+// import { RiArchiveDrawerFill } from 'react-icons/ri';
 
 const navigations = [
   {
@@ -9,21 +9,21 @@ const navigations = [
     label: 'User',
     icon: <FaUser />,
   },
-  {
-    href: '/settings',
-    label: 'Settings',
-    icon: <IoSettings />,
-  },
+  // {
+  //   href: '/settings',
+  //   label: 'Settings',
+  //   icon: <IoSettings />,
+  // },
   {
     href: '/friends',
     label: 'Friends',
     icon: <FaUserFriends />,
   },
-  {
-    href: '/archived',
-    label: 'Archived',
-    icon: <RiArchiveDrawerFill />,
-  },
+  // {
+  //   href: '/archived',
+  //   label: 'Archived',
+  //   icon: <RiArchiveDrawerFill />,
+  // },
 ];
 
 const NavBar = () => {

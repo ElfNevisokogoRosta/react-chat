@@ -3,53 +3,52 @@
 @tailwind utilities;
 
 @layer components {
-    .container {
-        padding: 0 16px;
-        margin: 0 auto;
-    }
+  .container {
+    padding: 0 16px;
+    margin: 0 auto;
+  }
 }
 
 @layer utilities {
-    .scrollbar {
-        scrollbar-width: thin;
-        scrollbar-color: transparent transparent;
+  .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 
-        &::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            border-radius: 8px;
-            width: 0;
-            height: 0;
-        }
-
-        &::-webkit-scrollbar-track {
-            background-color: transparent;
-            border-radius: 8px;
-            width: 0;
-            height: 0;
-        }
-
-        &::-webkit-scrollbar-corner {
-            background-color: transparent;
-            width: 0;
-            height: 0;
-        }
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 8px;
+      width: 0;
+      height: 0;
     }
-    .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        margin: -1px;
-        border: 0;
-        padding: 0;
-        
-        white-space: nowrap;
-        clip-path: inset(100%);
-        clip: rect(0 0 0 0);
-        overflow: hidden;
-      }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      border-radius: 8px;
+      width: 0;
+      height: 0;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: transparent;
+      width: 0;
+      height: 0;
+    }
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
 }
 
-
-/** {*/
-/*    outline: 1px solid tomato;*/
-/*}*/
+/* * {
+  outline: 1px solid tomato;
+} */

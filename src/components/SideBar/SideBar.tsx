@@ -5,7 +5,7 @@ import NavBar from '../Home/NavBar.tsx';
 import { cva } from 'class-variance-authority';
 
 const sideBarVariant = cva(
-  'z-40 relative bg-white-main transition-all h-screen max-w-[75px] border-r-2 pr-2 border-blue-main',
+  'hidden sm:block z-40 bg-blue-main relative transition-all absolute  max-w-[75px] border-r-2 pr-2 border-blue-main',
   {
     variants: {
       variant: {
@@ -32,11 +32,7 @@ const SideBar = () => {
         ),
       )}
     >
-      <BurgerButton
-        active={isVisible}
-        onClick={setSideBar}
-        className="ml-auto"
-      />
+      <BurgerButton active={isVisible} onClick={setSideBar} />
       <nav className="my-6 pl-4 py-3 overflow-hidden flex flex-col gap-2">
         <NavBar />
       </nav>

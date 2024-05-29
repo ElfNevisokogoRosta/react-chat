@@ -6,11 +6,16 @@ import NewChat from '../NewChat/NewChat.tsx';
 import { CiSearch } from 'react-icons/ci';
 import { AnimatePresence, motion } from 'framer-motion';
 import BaseInput from '../../UI/BaseInput.tsx';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import ChatDataTypes from '../../utils/types/ChatData.types.ts';
 import { RxCross1 } from 'react-icons/rx';
+import { cn } from '../../utils/cn.ts';
 
-const ChatList = () => {
+interface ChatListProps {
+  className?: string;
+}
+
+const ChatList: FC<ChatListProps> = ({ className }) => {
   const { openModal } = useModal();
   const { isUser } = useAuth();
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
@@ -49,7 +54,7 @@ const ChatList = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className={cn('flex flex-col w-full lg:w-1/4', className)}>
       <div className="flex items-center justify-between relative py-3">
         <h2 className="text-2xl font-bold text-white-main my-2 text z-0">
           Messaging
@@ -57,11 +62,11 @@ const ChatList = () => {
         <motion.div
           initial={{ width: 0, opacity: 0 }}
           animate={{
-            width: isSearchActive ? 300 : 0,
+            width: isSearchActive ? '100%' : 0,
             opacity: isSearchActive ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="absolute top-1/2 right-12 z-10 -translate-y-1/2 overflow-hidden pl-3.5"
+          className="absolute top-1/2 right-8 z-10 -translate-y-1/2 overflow-hidden pl-3.5"
         >
           <BaseInput
             onChange={onChangeHandler}

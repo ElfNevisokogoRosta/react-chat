@@ -50,7 +50,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ chat, func }) => {
             {chatNameHandler(chat.chat_name, isUser.username)}
           </span>
         )}
-        <div className="py-2 h-16 absolute flex justify-between w-3/4 items-center z-40 top-0 left-0 ">
+        <div className="py-2 h-16 absolute flex justify-between w-3/4 items-center z-30 top-0 left-0 lg:pl-[200px]">
           <AnimatePresence mode="wait" initial={false}>
             {searchIsOpen && (
               <motion.div
@@ -61,7 +61,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ chat, func }) => {
                 }}
                 transition={{ duration: 0.3 }}
                 exit={{ width: 0, opacity: 0 }}
-                className="bg-blue-main  z-40"
+                className="bg-blue-main z-40"
               >
                 <BaseInput
                   onChange={onSearchHandler}

@@ -59,7 +59,6 @@ const router = createBrowserRouter([
           },
           {
             path: ':chatId',
-
             element: (
               <WebSocketProvider value={socket}>
                 <ChatRoom />

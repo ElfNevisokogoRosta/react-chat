@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import ChatDataTypes from '../../utils/types/ChatData.types.ts';
 import getChat from '../../query/api/queries/getChat.ts';
 import ChatBody from './ChatBody.tsx';
+import ChatList from './ChatList.tsx';
 
 interface ChatRoomProps {}
 
@@ -57,9 +58,6 @@ const ChatRoom: FC<ChatRoomProps> = () => {
   };
 
   useEffect(() => {
-    webSocket.on('connect', () => {
-      console.log('WebSocket connected');
-    });
     webSocket.on('onMessage', async () => {
       return await refetch().then((res) => {
         if (res.data) {
@@ -73,27 +71,32 @@ const ChatRoom: FC<ChatRoomProps> = () => {
       });
     });
     return () => {
-      webSocket.off('connect');
       webSocket.off('newMessage', async () => {
         await refetch();
       });
     };
-  }, [webSocket, messageFilter]);
+  }, [webSocket, messageFilter, refetch]);
 
   const searchInMessages = (searchQ: string) => {
     setMessageFilter(searchQ);
   };
 
   return (
-    <div className="flex flex-col h-full min-h-[calc(100vh-200px)]">
-      <ChatHeader func={searchInMessages} chat={data && data} />
-      <div className="max-h-[calc(100vh-350px)] flex flex-col mt-auto">
-        <div className="overflow-y-scroll h-full scrollbar" ref={chatBottomRef}>
-          <ChatBody messages={messages} />
+    <div className="flex gap-9">
+      <ChatList className="hidden lg:block" />
+      <div className="flex w-full flex-col h-full min-h-[calc(100vh-200px)] lg:min-h-[calc(100vh-100px)] lg:pt-9">
+        <ChatHeader func={searchInMessages} chat={data && data} />
+        <div className="max-h-[calc(100vh-350px)] lg:max-h-[calc(100vh-100px)] flex flex-col mt-auto">
+          <div
+            className="overflow-y-scroll h-full scrollbar"
+            ref={chatBottomRef}
+          >
+            <ChatBody messages={messages} />
+          </div>
         </div>
-      </div>
-      <div className="border-t-2 mt-4">
-        <ChatForm sendMessage={newMessage} />
+        <div className="border-t-2 mt-4">
+          <ChatForm sendMessage={newMessage} />
+        </div>
       </div>
     </div>
   );
