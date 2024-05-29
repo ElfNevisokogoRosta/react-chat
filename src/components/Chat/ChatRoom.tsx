@@ -16,17 +16,19 @@ const ChatRoom: FC<ChatRoomProps> = () => {
   const params = useParams<{ chatId: string }>();
   const { isUser } = useAuth();
   const [messages, setMessages] = useState<MessageData[]>([]);
-
+  const [messageFilter, setMessageFilter] = useState<string>('');
   const user_id = isUser?.id || -1;
   const chat_id = parseFloat(params?.chatId || '-1');
   const webSocket = useContext(WebSocketContext);
   const chatBottomRef = useRef<HTMLDivElement>(null);
   const chatID = params?.chatId || '-1';
+
   useEffect(() => {
     if (chatBottomRef.current) {
       chatBottomRef.current.scrollTop = chatBottomRef.current.scrollHeight;
     }
   }, [messages]);
+
   //TODO refactor all queries
   const { data, refetch } = useQuery<ChatDataTypes>({
     queryFn: async () => await getChat(chatID),
@@ -36,9 +38,12 @@ const ChatRoom: FC<ChatRoomProps> = () => {
   useEffect(() => {
     if (data && data.messages) {
       const sortedMessages = data.messages.sort((a, b) => b.id - a.id);
-      setMessages(sortedMessages);
+      const filteredMessages = sortedMessages.filter((mes) =>
+        mes.text.toLowerCase().includes(messageFilter.toLowerCase()),
+      );
+      setMessages(filteredMessages);
     }
-  }, [data]);
+  }, [data, messageFilter]);
 
   const newMessage = (messageData: Partial<MessageData>) => {
     const newMessage: MessageData = {
@@ -59,7 +64,10 @@ const ChatRoom: FC<ChatRoomProps> = () => {
       return await refetch().then((res) => {
         if (res.data) {
           const sortedMessages = res.data.messages.sort((a, b) => b.id - a.id);
-          setMessages(sortedMessages);
+          const filteredMessages = sortedMessages.filter((mes) =>
+            mes.text.toLowerCase().includes(messageFilter.toLowerCase()),
+          );
+          setMessages(filteredMessages);
         }
         return;
       });
@@ -70,12 +78,16 @@ const ChatRoom: FC<ChatRoomProps> = () => {
         await refetch();
       });
     };
-  }, [webSocket]);
+  }, [webSocket, messageFilter]);
+
+  const searchInMessages = (searchQ: string) => {
+    setMessageFilter(searchQ);
+  };
 
   return (
     <div className="flex flex-col h-full min-h-[calc(100vh-200px)]">
-      <ChatHeader chat={data && data} />
-      <div className="max-h-[calc(100vh-350px)] flex flex-col  mt-auto">
+      <ChatHeader func={searchInMessages} chat={data && data} />
+      <div className="max-h-[calc(100vh-350px)] flex flex-col mt-auto">
         <div className="overflow-y-scroll h-full scrollbar" ref={chatBottomRef}>
           <ChatBody messages={messages} />
         </div>

@@ -8,7 +8,7 @@ import BackTo from '../components/BackTo/BackTo.tsx';
 const FriendsPage = () => {
   const { isUser } = useAuth();
   const { openModal } = useModal();
-
+  console.log(isUser?.friends);
   return (
     <div className="container">
       <h2 className="my-4 text-white-main text-3xl font-extrabold">
