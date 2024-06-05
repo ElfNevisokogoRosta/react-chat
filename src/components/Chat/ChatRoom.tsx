@@ -84,9 +84,9 @@ const ChatRoom: FC<ChatRoomProps> = () => {
   return (
     <div className="flex gap-9">
       <ChatList className="hidden lg:block" />
-      <div className="flex w-full flex-col h-full min-h-[calc(100vh-200px)] lg:min-h-[calc(100vh-100px)] lg:pt-9">
+      <div className="flex w-full flex-col h-full min-h-[calc(100vh-200px)] lg:min-h-[calc(100vh-200px)] lg:pt-9">
         <ChatHeader func={searchInMessages} chat={data && data} />
-        <div className="max-h-[calc(100vh-350px)] lg:max-h-[calc(100vh-100px)] flex flex-col mt-auto">
+        <div className="max-h-[calc(100vh-350px)]  flex flex-col mt-auto">
           <div
             className="overflow-y-scroll h-full scrollbar"
             ref={chatBottomRef}

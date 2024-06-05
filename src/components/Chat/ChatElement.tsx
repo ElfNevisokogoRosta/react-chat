@@ -22,7 +22,7 @@ const ChatElement: FC<ChatElementProps> = ({ chatElement }) => {
 
   return (
     <li
-      onClick={() => navigate(`${id}`)}
+      onClick={() => navigate(`/dashboard/${id}`)}
       className="transition  flex gap-6 items-center group p-3 rounded hover:bg-pink-secondary cursor-pointer"
     >
       <span className="w-12 h-12 rounded-full bg-yellow-main flex items-center justify-center shrink-0"></span>

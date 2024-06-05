@@ -60,7 +60,7 @@ const NewChat = () => {
     }
   };
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full bg-blue-main pt-10">
+    <div className="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full bg-blue-main pt-10 md:w-[568px]">
       <div className="p-6">
         <button
           onClick={onModalClose}

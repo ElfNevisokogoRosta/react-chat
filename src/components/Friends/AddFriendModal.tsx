@@ -39,7 +39,7 @@ const AddFriendModal = () => {
     mutate(usersId);
   };
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full bg-blue-main p-5 pt-10">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-screen bg-blue-main p-5 pt-10 md:max-w-[468px] md:rounded-lg md:p-9">
       <button
         onClick={closeModal}
         className="w-6 h-6 absolute top-6 right-6 text-purple-main hover:bg-yellow-200 rounded transition"

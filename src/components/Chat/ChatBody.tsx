@@ -10,7 +10,7 @@ interface ChatBodyProps {
 const ChatBody: FC<ChatBodyProps> = ({ messages }) => {
   const { isUser } = useAuth();
   return (
-    <ul className="flex flex-col-reverse scrollbar gap-4 w-full max-h-fit h-full pb-2 ">
+    <ul className="flex flex-col-reverse scrollbar gap-4 w-full pb-2">
       {messages?.length === 0 && (
         <li className="text-white-main text-lg font-bold px-4">
           Start a conversation right now in form below{' '}
